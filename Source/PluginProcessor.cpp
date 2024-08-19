@@ -10,18 +10,15 @@
 #include "PluginEditor.h"
 
 //==============================================================================
-DelayAudioProcessor::DelayAudioProcessor()
-#ifndef JucePlugin_PreferredChannelConfigurations
-     : AudioProcessor (BusesProperties()
-                     #if ! JucePlugin_IsMidiEffect
-                      #if ! JucePlugin_IsSynth
-                       .withInput  ("Input",  juce::AudioChannelSet::stereo(), true)
-                      #endif
-                       .withOutput ("Output", juce::AudioChannelSet::stereo(), true)
-                     #endif
-                       )
-#endif
+DelayAudioProcessor::DelayAudioProcessor() :
+    AudioProcessor(
+        BusesProperties()
+            .withInput("Input", juce::AudioChannelSet::stereo(), true)
+            .withOutput("Output", juce::AudioChannelSet::stereo(), true)
+    )
 {
+    auto* param = apvts.getParameter(gainParameterID.getParamID());
+    gainParam = dynamic_cast<juce::AudioParameterFloat*>(param);
 }
 
 DelayAudioProcessor::~DelayAudioProcessor()
@@ -130,7 +127,7 @@ void DelayAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::
     // Alternatively, you can process the samples with the channels
     // interleaved by keeping the same state.
 
-    float gainInDecibels = -6.0f;
+    float gainInDecibels = gainParam->get();
 
     float gain = juce::Decibels::decibelsToGain(gainInDecibels);
 
@@ -179,4 +176,16 @@ void DelayAudioProcessor::setStateInformation (const void* data, int sizeInBytes
 juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
     return new DelayAudioProcessor();
+}
+
+juce::AudioProcessorValueTreeState::ParameterLayout DelayAudioProcessor::createParameterLayout()
+{
+    juce::AudioProcessorValueTreeState::ParameterLayout layout;
+
+    layout.add(std::make_unique <juce::AudioParameterFloat> (
+        gainParameterID,
+        "Output Gain",
+        juce::NormalisableRange<float> { -12.0f, 12.0f},
+        0.0f));
+        return layout;
 }
