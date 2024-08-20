@@ -679,6 +679,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\Parameters.cpp">
+      <Filter>Delay\Source</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\PluginProcessor.cpp">
       <Filter>Delay\Source</Filter>
     </ClCompile>
@@ -3444,6 +3447,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\Parameters.h">
+      <Filter>Delay\Source</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\PluginProcessor.h">
       <Filter>Delay\Source</Filter>
     </ClInclude>
