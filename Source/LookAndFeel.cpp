@@ -159,4 +159,3 @@ juce::Font MainLookAndFeel::getLabelFont([[maybe_unused]] juce::Label& label)
 {
     return Fonts::getFont();
 }
-

@@ -2,8 +2,8 @@
 #include "PluginEditor.h"
 
 //==============================================================================
-DelayAudioProcessorEditor::DelayAudioProcessorEditor (DelayAudioProcessor& p)
-    : AudioProcessorEditor (&p), audioProcessor (p)
+DelayAudioProcessorEditor::DelayAudioProcessorEditor(DelayAudioProcessor& p)
+    : AudioProcessorEditor(&p), audioProcessor(p)
 {
     delayGroup.setText("Delay");
     delayGroup.setTextLabelPosition(juce::Justification::horizontallyCentred);
@@ -12,6 +12,7 @@ DelayAudioProcessorEditor::DelayAudioProcessorEditor (DelayAudioProcessor& p)
 
     feedbackGroup.setText("Feedback");
     feedbackGroup.setTextLabelPosition(juce::Justification::horizontallyCentred);
+    feedbackGroup.addAndMakeVisible(feedbackKnob);
     addAndMakeVisible(feedbackGroup);
 
     outputGroup.setText("Output");
@@ -33,7 +34,7 @@ DelayAudioProcessorEditor::~DelayAudioProcessorEditor()
 }
 
 //==============================================================================
-void DelayAudioProcessorEditor::paint (juce::Graphics& g)
+void DelayAudioProcessorEditor::paint(juce::Graphics& g)
 {
     auto noise = juce::ImageCache::getFromMemory(
         BinaryData::Noise_png, BinaryData::Noise_pngSize);
@@ -74,4 +75,6 @@ void DelayAudioProcessorEditor::resized()
     delayTimeKnob.setTopLeftPosition(20, 20);
     mixKnob.setTopLeftPosition(20, 20);
     gainKnob.setTopLeftPosition(mixKnob.getX(), mixKnob.getBottom() + 10);
+
+    feedbackKnob.setTopLeftPosition(20, 20);
 }

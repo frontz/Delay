@@ -10,6 +10,8 @@
       <FILE id="zl5nI6" name="Noise.png" compile="0" resource="1" file="../getting-started-book-main/Resources/Noise.png"/>
     </GROUP>
     <GROUP id="{6557B58D-5571-B148-1518-93420FEDF622}" name="Source">
+      <FILE id="FwjJCy" name="ProtectYourEars.h" compile="0" resource="0"
+            file="Source/ProtectYourEars.h"/>
       <FILE id="Yw5HT0" name="LookAndFeel.cpp" compile="1" resource="0" file="Source/LookAndFeel.cpp"/>
       <FILE id="mtnfah" name="LookAndFeel.h" compile="0" resource="0" file="Source/LookAndFeel.h"/>
       <FILE id="whSvTx" name="Parameters.cpp" compile="1" resource="0" file="Source/Parameters.cpp"/>
